@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style type="text/css">
+        .container {
+          .container-fixed();
+
+          @media (min-width: @screen-sm-min) {
+            width: @container-sm;
+        }
+        @media (min-width: @screen-md-min) {
+            width: @container-md;
+        }
+        @media (min-width: @screen-lg-min) {
+            width: @container-lg;
+        }
+
+    }
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 35px;
+    }
+
+</style>
+<title>Testar expressão regular</title>
+</head>
+<body>
+
+    <div class="container theme-showcase" role="main">
+
+        <h1>Testar expressão regular</h1>
+
+
+
+
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="expressão regular"  aria-describedby="basic-addon2" id="expressao">
+          <div class="input-group-append">
+            <button type='button' id="att_filme" class="btn btn-outline-secondary">Testar</button>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        document.getElementById('att_filme').onclick = function reposta(){
+            var expressao = $("#expressao").val();
+
+            var expressao_end = {
+                expressao: expressao
+            };
+
+
+            $.post('executa.php', expressao_end, function(retorno){
+                var rtt = retorno;
+
+
+                if (rtt === "NÃO IDENTIFICADO") {
+                    swal(rtt, "", "error");
+                }
+                else{
+                    swal(rtt, "", "success");
+                }
+
+
+            });
+        }
+        
+    });
+
+</script>
+</html>
